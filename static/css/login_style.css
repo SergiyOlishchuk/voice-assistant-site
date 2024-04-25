@@ -1,0 +1,79 @@
+:root {
+    --color-1: #04202C;
+    --color-2: #304040;
+    --color-3: #5B7065;
+    --color-4: #C9D1C8;
+    --white: #fff;
+    --black: #000;
+
+    --height-register-block: 417px;
+}
+
+body {
+    background-color: var(--color-1);
+}
+
+.h-login {
+    font-size: 50px;
+}
+
+.register-block {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: var(--height-register-block);
+    align-items: center;
+    margin: 0 auto;
+    margin-top: calc((100vh - var(--height-register-block)) / 2);
+    background-color: var(--color-4);
+
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+
+.login-form {
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    justify-content: space-between;
+
+
+    /* border: 2px dashed rgb(255, 0, 0); */
+}
+
+.login-form input {
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.btn-form {
+    width: 200px;
+    height: 40px;
+    background-color: var(--color-1);
+    color: var(--white);
+    border-radius: 10px;
+}
+
+.btn-register {
+    margin: 0 0 15px 0;
+}
+
+.btn-login {
+    align-self: center;
+    margin: 0 0 10px 0;
+}
+
+.line {
+    border-bottom: 2px solid var(--color-1);
+    width: 100%;
+    margin: 5px 0px 15px 0px;
+}
+
+.pass-recovery {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 20px;
+}

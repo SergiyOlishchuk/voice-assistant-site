@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/login_style.css" %}">
+{% endblock styles %}
+
+{% block content %}
+
+    <div class="main-block">
+        <div class="register-block">
+            <h1 class="h-login">Вхід</h1>
+            <form action="" class="login-form" method="">
+                <input type="text" name="" id="" placeholder="Введіть логін">
+                <input type="password" name="" id="" placeholder="Введіть пароль">
+                <button type="submit" class="btn-login btn-form">Ввійти</button>
+            </form>
+            <a href="" class="pass-recovery">Забули пароль?</a>
+            <div class="line"></div>
+            <button type="button" class="btn-register btn-form">Зареєструватись</button>
+        </div>
+    </div>
+
+{% endblock content %}
