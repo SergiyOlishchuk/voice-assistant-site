@@ -10,9 +10,12 @@
     <div class="main-block">
         <div class="register-block">
             <h1 class="h-login">Вхід</h1>
-            <form action="" class="login-form" method="">
-                <input type="text" name="" id="" placeholder="Введіть логін">
-                <input type="password" name="" id="" placeholder="Введіть пароль">
+            <form action="{% url "user:login" %}" class="login-form" method="POST">
+                {% csrf_token %}
+                <input type="text" name="username" id="id_username" 
+                value="{% if form.username.value %}form.username.value{% endif %}"
+                placeholder="Введіть логін" required>
+                <input type="password" name="password" id="id_password" placeholder="Введіть пароль" required>
                 <button type="submit" class="btn-login btn-form">Ввійти</button>
             </form>
             <a href="" class="pass-recovery">Забули пароль?</a>
