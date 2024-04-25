@@ -12,6 +12,9 @@
             <h1 class="h-login">Вхід</h1>
             <form action="{% url "user:login" %}" class="login-form" method="POST">
                 {% csrf_token %}
+                {% if request.GET.next %}
+                <input type="hidden" name="next" value="request.GET.next">
+                {% endif %}
                 <input type="text" name="username" id="id_username" 
                 value="{% if form.username.value %}form.username.value{% endif %}"
                 placeholder="Введіть логін" required>
@@ -20,8 +23,12 @@
             </form>
             <a href="" class="pass-recovery">Забули пароль?</a>
             <div class="line"></div>
-            <button type="button" class="btn-register btn-form">Зареєструватись</button>
+            <button type="button" class="btn-register btn-form" id="registrate" target-url="{% url "user:registration" %}">Зареєструватись</button>
         </div>
     </div>
 
 {% endblock content %}
+
+{% block javascript %}
+<script src="{% static "/js/registration_script.js" %}"></script>
+{% endblock javascript %}

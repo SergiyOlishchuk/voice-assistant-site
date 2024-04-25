@@ -8,10 +8,11 @@
         {% if user.is_admin or user.is_staff %}
             <a href="{% url "admin:index" %}">Admin</a>
         {% endif %}
-        <a href="#">Logout</a>
+        <a href="{% url "user:logout" %}">Logout</a>
     {% else %}
     <h3>User is not authenticated</h3>
     <a href="{% url "user:login" %}">Login</a>
+    <a href="{% url "user:registration" %}">Register</a>
     {% endif %}
     
 {% endblock content %}
