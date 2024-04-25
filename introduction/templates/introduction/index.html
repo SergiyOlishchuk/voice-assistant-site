@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>Intro page</h1>
+    {% if user.is_authenticated %}
+    <h3>Username: {{ user.username }}</h3>
+        {% if user.is_admin or user.is_staff %}
+            <a href="{% url "admin:index" %}">Admin</a>
+        {% endif %}
+        <a href="#">Logout</a>
+    {% else %}
+    <h3>User is not authenticated</h3>
+    <a href="{% url "user:login" %}">Login</a>
+    {% endif %}
+    
+{% endblock content %}
