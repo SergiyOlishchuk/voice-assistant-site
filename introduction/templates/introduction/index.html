@@ -1,18 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/introduction_style.css" %}">
+<link rel="stylesheet" href="{% static "css/nav_style.css" %}">
+{% endblock styles %}
+
 {% block content %}
-    <h1>Intro page</h1>
+
     {% if user.is_authenticated %}
-    <h3>Username: {{ user.username }}</h3>
-        {% if user.is_admin or user.is_staff %}
-            <a href="{% url "admin:index" %}">Admin</a>
-        {% endif %}
-        <a href="{% url "user:logout" %}">Logout</a>
+        {% include "includes/auth_navbar.html" %}
+        <div class="container">
+            <h1 class="title">Голосовий асистент</h1>
+            <button class="btn btn-start" id="btn-link" target_url="#">Почати роботу</button>
+        </div>
+
     {% else %}
-    <h3>User is not authenticated</h3>
-    <a href="{% url "user:login" %}">Login</a>
-    <a href="{% url "user:registration" %}">Register</a>
+        {% include "includes/not_auth_navbar.html" %}
+
+        <div class="container">
+            <h1 class="title">Голосовий асистент</h1>
+        </div>
     {% endif %}
     
 {% endblock content %}
+
+{% block javascript %}
+<script src="{% static "js/profile_menu.js" %}"></script>
+{% endblock javascript %}

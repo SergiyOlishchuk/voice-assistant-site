@@ -1,0 +1,14 @@
+{% load static %}
+
+<nav class="nav-bar">
+    <div class="logo-container">
+        <a href="{% url "introduction:index" %}" class="logo-link">
+            <img src="{% static "img/image.png" %}" alt="logo" class="img-logo">
+        </a>
+    </div>
+
+    <div class="right-side">
+        <a href="{% url "user:registration" %}" class="link menu-link">Зареєструватися</a>
+        <a href="{% url "user:login" %}" class="link menu-link">Авторизуватися</a>
+    </div>
+</nav>
