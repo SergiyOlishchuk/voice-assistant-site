@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', sans-serif;
+}
+
+body {
+    background-color: #fff;
+}
+
+.logo-container {
+    width: 50px;
+    transition: transform 0.5s;
+}
+
+.logo-container:hover {
+    transform: rotate(90deg);
+}
+
+.img-logo {
+    width: 100%;
+    height: auto;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #2F70AF;
+    color: white;
+    height: 80px;
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+}
+
+.menu-link {
+    margin-right: 50px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    position: relative;
+}
+
+.menu-link:hover {
+    text-decoration: underline;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.profile-menu {
+    position: absolute;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: #2F70AF;
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    z-index: 1;
+}
+
+.show {
+    visibility: visible;
+}
+
+.profile-link {
+    color: #fff;
+    padding: 10px 5px;
+    border-bottom: 1px solid #000;
+    text-align: center;
+}
+
+.profile-link:hover {
+    text-decoration: underline;
+}
+
+.profile-img {
+    max-width: 50px;
+}
+
+.profile-part {
+    margin-right: 20px;
+
+}
+
+.username {
+    font-size: 20px;
+}
+
+.triangle {
+    max-width: 20px;
+    transition: transform 0.5s;
+}
+
+.transform-180 {
+    transform: rotate(180deg);
+}

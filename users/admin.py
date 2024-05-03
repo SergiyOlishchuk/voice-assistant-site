@@ -16,7 +16,7 @@ class UserAdmin(admin.ModelAdmin):
         "username",
         ("first_name", "last_name"),
         "email",
-        "openAI_token",
+        "token",
         "image",
         ("date_joined", "last_login"),
         ("is_staff", "is_active", "is_superuser"),

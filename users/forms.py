@@ -21,7 +21,7 @@ class UserRegistrationForm(UserCreationForm):
             "last_name",
             "username",
             "email",
-            "openAI_token",
+            "token",
             "password1",
             "password2",
         ]
@@ -30,6 +30,6 @@ class UserRegistrationForm(UserCreationForm):
     last_name = forms.CharField()
     username = forms.CharField()
     email = forms.EmailField()
-    openAI_token = forms.CharField()
+    token = forms.CharField()
     password1 = forms.CharField()
     password2 = forms.CharField()

@@ -6,74 +6,101 @@
 {% endblock styles %}
 
 {% block content %}
-<div class="main-block">
-    <div class="register-block">
-        <h1>Реєстрація</h1>
-        <form action="{% url "user:registration" %}" class="reg-form" method="POST">
-            {% csrf_token %}
-            <div class="labels-row">
-                <div class="labels-col">
-                    <label for="id_first_name">Ім'я*</label>
-                    <input type="text" name="first_name" id="id_first_name" required
-                    value={% if form.first_name.value %}{{ form.first_name.value }}{% endif %}>
-                    {% if form.firs_name.errors %}
-                        <div class="alert alert-danger alert-dismissible fade show">{{ form.firs_name.errors }}</div>
-                    {% endif %}
 
-                    <label for="id_username" style="margin: 10px 0 0 0;">Логін*</label>
-                    <input type="text" name="username" id="id_username" required
-                    value={% if form.username.value %}{{ form.username.value }}{% endif %}>
-                    {% if form.username.errors %}
-                        <div class="">{{ form.username.errors }}</div>
-                    {% endif %}
+<div class="container">
+    <h1 class="title">Реєстрація</h1>
+    <form action="{% url "user:registration" %}" class="form-registration" method="POST">
+        {% csrf_token %}
+        <div class="fields-row">
+            <div class="field-wrapper">
+                <label for="id_username" class="label">Логін</label>
+                <input type="text" class="field" id="id_username" name="username" 
+                value="{% if form.username.value %}{{ form.username.value }}{% endif %}"
+                placeholder="Логін" required>
+                {% if form.username.errors %}
+                <div class="error">
+                    {{ form.username.errors }}
                 </div>
-                
-                <div class="labels-col">
-                    <label for="id_last_name">Прізвище*</label>
-                    <input type="text" name="last_name" id="id_last_name" required
-                    value={% if form.last_name.value %}{{ form.last_name.value }}{% endif %}>
-                    {% if form.last_name.errors %}
-                        <div class="">{{ form.last_name.errors }}</div>
-                    {% endif %}
-
-                    <label for="id_email" style="margin: 10px 0 0 0;">Email*</label>
-                    <input type="email" name="email" id="id_email" required
-                    value={% if form.email.value %}{{ form.email.value }}{% endif %}>
-                    {% if form.email.errors %}
-                        <div class="">{{ form.email.errors }}</div>
-                    {% endif %}
-                </div>
-            </div>
-            
-            <div class="labels-col" style="width: 100%;">
-                <label for="id_openAI_token">OpenAI токен*</label>
-                <input type="text" name="openAI_token" id="id_openAI_token" required
-                value={% if form.openAI_token.value %}{{ form.openAI_token.value }}{% endif %}>
-                {% if form.openAI_token.errors %}
-                    <div class="">{{ form.openAI_token.errors }}</div>
                 {% endif %}
             </div>
-            
-            <div class="labels-row">    
-                <div class="labels-col">
-                    <label for="id_password1">Пароль*</label>
-                    <input type="password" name="password1" id="id_password1" required>
-                    {% if form.password1.errors %}
-                    <div class="">{{ form.password1.errors }}</div>
-                    {% endif %}
+
+            <div class="field-wrapper">
+                <label for="id_email" class="label">Пошта</label>
+                <input type="email" class="field" id="id_email" name="email" 
+                value="{% if form.email.value %}{{ form.email.value }}{% endif %}"
+                placeholder="Пошта" required>
+                {% if form.email.errors %}
+                <div class="error">
+                    {{ form.email.errors }}
                 </div>
-                <div class="labels-col">
-                    <label for="id_password2">Підтвердження паролю*</label>
-                    <input type="password" name="password2" id="id_password2" required>
-                    {% if form.password2.errors %}
-                    <div class="">{{ form.password2.errors }}</div>
-                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="fields-row">
+            <div class="field-wrapper">
+                <label for="id_first_name" class="label">Ім'я</label>
+                <input type="text" class="field" id="id_first_name" name="first_name" 
+                value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}"
+                placeholder="Ім'я" required>
+                {% if form.first_name.errors %}
+                <div class="error">
+                    {{ form.first_name.errors }}
                 </div>
+                {% endif %}
             </div>
 
-            <button type="submit" class="btn-register">Зареєструватись</button>
+            <div class="field-wrapper">
+                <label for="id_last_name" class="label">Прізвище</label>
+                <input type="text" class="field" id="id_last_name" name="last_name" 
+                value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}"
+                placeholder="Прізвище" required>
+                {% if form.last_name.errors %}
+                <div class="error">
+                    {{ form.last_name.errors }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
 
-        </form>
-    </div>
+        <div class="fields-row">
+            <div class="field-wrapper">
+                <label for="id_token" class="label">Токен</label>
+                <input type="text" class="field field-openAI" id="id_token" name="token" 
+                value="{% if form.token.value %}{{ form.token.value }}{% endif %}"
+                placeholder="Токен" required>
+                {% if form.token.errors %}
+                <div class="error">
+                    {{ form.token.errors }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="fields-row">
+            <div class="field-wrapper">
+                <label for="id_password1" class="label">Пароль</label>
+                <input type="password" class="field" id="id_password1" name="password1" placeholder="Пароль" required>
+                {% if form.password1.errors %}
+                <div class="error">
+                    {{ form.password1.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="field-wrapper">
+                <label for="id_password2" class="label">Підтвердження паролю</label>
+                <input type="password" class="field" id="id_password2" name="password2" placeholder="Підтвердження паролю" required>
+                {% if form.password2.errors %}
+                <div class="error">
+                    {{ form.password2.errors }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-register">Зареєструватися</button>
+    </form>
 </div>
+
 {% endblock content %}

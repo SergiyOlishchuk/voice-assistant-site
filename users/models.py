@@ -8,7 +8,7 @@ class User(AbstractUser):
         upload_to="users_images", blank=True, null=True, verbose_name="Фото профіля"
     )
 
-    openAI_token = models.CharField(max_length=300, verbose_name="OpenAI токен")
+    token = models.CharField(max_length=300, verbose_name="OpenAI токен")
 
     class Meta:
         db_table = "users"

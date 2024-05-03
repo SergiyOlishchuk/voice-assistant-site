@@ -1,79 +1,125 @@
-:root {
-    --color-1: #04202C;
-    --color-2: #304040;
-    --color-3: #5B7065;
-    --color-4: #C9D1C8;
-    --white: #fff;
-    --black: #000;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-    --height-register-block: 417px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: var(--color-1);
+    background-color: #02315E;
 }
 
-.h-login {
-    font-size: 50px;
+
+.message {
+    font-family: 'Roboto Mono', sans-serif;
+    position: absolute;
+    width: 300px;
+    background-color: red;
+    left: calc((100vw - 300px) / 2);
+    top: 20px;
+    z-index: 1000;
+    text-align: center;
+    padding: 10px 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    font-size: 18px;
+    opacity: 1;
+    transition: opacity 3s ease;
 }
 
-.register-block {
+.hidden {
+    opacity: 0;
+}
+
+.container {
+    position: relative;
+    width: 620px;
+    height: 450px;
     display: flex;
     flex-direction: column;
-    width: 600px;
-    height: var(--height-register-block);
     align-items: center;
     margin: 0 auto;
-    margin-top: calc((100vh - var(--height-register-block)) / 2);
-    background-color: var(--color-4);
 
-    border: 1px solid;
+    font-family: 'Roboto Mono', sans-serif;
+
+    margin-top: calc((100vh - 500px) / 2);
+
+    border: 1px solid #2F70AF;
     border-radius: 20px;
+    padding: 10px 0 0 0;
+
+    background-color: #2F70AF;
 }
 
+.form-login {
+    width: 400px;
+    height: 200px;
 
-.login-form {
-    height: 190px;
     display: flex;
     flex-direction: column;
-    width: 400px;
     justify-content: space-between;
+    align-items: center;
 
-
-    /* border: 2px dashed rgb(255, 0, 0); */
+    margin: 30px 0;
 }
 
-.login-form input {
+.field {
+    width: 370px;
     height: 40px;
-    font-size: 20px;
+    font-family: 'Roboto Mono', sans-serif;
+    padding: 0 10px;
+    font-size: 24px;
+    border: 1px solid #fff;
     border-radius: 10px;
 }
 
-.btn-form {
-    width: 200px;
-    height: 40px;
-    background-color: var(--color-1);
-    color: var(--white);
-    border-radius: 10px;
+.field:focus {
+    outline: solid;
+    outline-offset: 0px;
+    outline-width: 2px;
 }
 
-.btn-register {
-    margin: 0 0 15px 0;
+.btn {
+    cursor: pointer;
+    font-family: 'Roboto Mono', sans-serif;
+    font-size: 18px;
+}
+
+.btn:hover {
+    border: 1px solid #000;
 }
 
 .btn-login {
-    align-self: center;
-    margin: 0 0 10px 0;
+    width: 200px;
+    height: 36px;
+    background-color: #00457E;
+    color: #fff;
+    border: 1px solid #00457E;
+    border-radius: 7px;
 }
 
-.line {
-    border-bottom: 2px solid var(--color-1);
-    width: 100%;
-    margin: 5px 0px 15px 0px;
+.btn-register-page {
+    width: 300px;
+    height: 36px;
+    margin: 30px 0 0 0;
+    border: 1px solid #00457E;
+    border-radius: 7px;
+    background-color: #00457E;
+    color: #fff;;
 }
 
-.pass-recovery {
+.link {
     text-decoration: none;
-    color: var(--black);
-    font-size: 20px;
+    color: #000;
+    cursor: pointer;
+}
+
+.link-forget {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.link-forget:hover {
+    text-decoration: underline;
 }
