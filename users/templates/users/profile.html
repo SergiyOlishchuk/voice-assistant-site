@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/nav_style.css" %}">
+<link rel="stylesheet" href="{% static "css/profile.css" %}">
+{% endblock styles %}
+
+{% block content %}
+
+{% include "includes/auth_navbar.html" %}
+
+    <div class="container">
+        <form class="profile-change" action="{% url "user:profile" %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="profile-row">
+                <div class="profile-avatar">
+                    {% if user.image %}
+                    <img src="{{ user.image.url }}" alt="">
+                    {% else %}
+                    <img src="{% static "img/profile_photo_not_found.png" %}" alt="">
+                    {% endif %}
+                    <input type="file" class="" name="image" id="id_image" accept="image/*">
+                    {% if form.image.errors %}
+                    <div class="error">
+                        {{ form.image.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="profile-row">
+                <div class="field-wrapper">
+                    <label for="id_username">Логін</label>
+                    <input type="text" name="username" id="id_username" class="field" 
+                    value="{% if form.username.value %}{{ form.username.value }}{% else %}{{ user.username }}{% endif %}"
+                    placeholder="Логін" required>
+                    {% if form.username.errors %}
+                    <div class="error">
+                        {{ form.username.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="field-wrapper">
+                    <label for="id_email">Пошта</label>
+                    <input type="email" name="email" id="id_email" class="field" 
+                    value="{% if form.email.value %}{{ form.email.value }}{% else %}{{ user.email }}{% endif %}"
+                    placeholder="Email" required>
+                    {% if form.email.errors %}
+                    <div class="error">
+                        {{ form.email.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="profile-row">
+                <div class="field-wrapper">
+                    <label for="id_first_name">Ім'я</label>
+                    <input type="text" name="first_name" id="id_first_name" class="field" 
+                    value="{% if form.first_name.value %}{{ form.first_name.value }}{% else %}{{ user.fist_name }}{% endif %}"
+                    placeholder="Ім'я" required>
+                    {% if form.first_name.errors %}
+                    <div class="error">
+                        {{ form.first_name.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="field-wrapper">
+                    <label for="id_last_name">Прізвище</label>
+                    <input type="text" name="last_name" id="id_last_name" class="field" 
+                    value="{% if form.last_name.value %}{{ form.last_name.value }}{% else %}{{ user.last_name }}{% endif %}"
+                    placeholder="Прізвище" required>
+                    {% if form.last_name.errors %}
+                    <div class="error">
+                        {{ form.last_name.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="profile-row token-row">
+                <div class="field-wrapper token-wrapper">
+                    <label for="id_token">Токен</label>
+                    <input type="text" name="token" id="id_token" class="field token-field" 
+                    value="{% if form.token.value %}{{ form.token.value }}{% else %}{{ user.token }}{% endif %}"
+                    placeholder="Токен" required>
+                    {% if form.token.errors %}
+                    <div class="error">
+                        {{ form.token.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-profile">Зберегти</button>
+        </form>
+
+        <button class="btn btn-change-password" id="change-password">Змінити пароль</button>
+    </div>
+
+    <div class="modal" id="modal">
+        <form action="{% url "user:change_password" %}" class="change-password" method="POST">
+            {% csrf_token %}
+            <div class="field-wrapper">
+                <label for="id_old_password">Старий пароль</label>
+                <input type="password" name="old_password" id="id_old_password" class="field" placeholder="Старий пароль">
+                {% if form.old_password.errors %}
+                    <div class="error">
+                        {{ form.old_password.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="field-wrapper">
+                <label for="id_new_password1">Новий пароль</label>
+                <input type="password" name="new_password1" id="id_new_password1" class="field" placeholder="Новий пароль">
+                {% if form.new_password1.errors %}
+                    <div class="error">
+                        {{ form.new_password1.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="field-wrapper">
+                <label for="id_new_password2">Підтвердження паролю</label>
+                <input type="password" name="new_password2" id="id_new_password2" class="field" placeholder="Підтвердження паролю">
+                {% if form.new_password2.errors %}
+                    <div class="error">
+                        {{ form.new_password2.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-password">Зберегти</button>
+        </form>
+    </div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static "js/nav_script.js" %}"></script>
+<script src="{% static "js/profile_script.js" %}"></script>
+{% endblock javascript %}

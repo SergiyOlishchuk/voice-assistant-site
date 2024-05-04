@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import UserLoginForm, UserPasswordChangeForm, UserProfileForm, UserRegistrationForm
 
 # Create your views here.
 
@@ -63,3 +63,40 @@ def registration(request):
 def logout(request):
     auth.logout(request)
     return redirect(reverse('introduction:index'))
+
+@login_required
+def profile(request):
+    
+    if request.method == "POST":
+        form = UserProfileForm(
+            data=request.POST, instance=request.user, files=request.FILES
+        )
+        
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('user:profile'))
+    
+    else:
+        form = UserProfileForm(instance=request.user)
+        
+    context = {
+        'title': 'Профіль',
+        'form' : form,
+        
+    }
+    
+    return render(request, 'users/profile.html', context)
+
+# def change_password(request):
+    
+#     if request.method == 'POST':
+#         form = UserPasswordChangeForm(data=request.POST, instance=request.user)
+        
+#         if form.is_valid():
+#             form.save()
+#             return redirect(reverse('user:profile'))
+        
+#     else:
+#         form = UserPasswordChangeForm(instance=request.user)
+        
+#     context = {}

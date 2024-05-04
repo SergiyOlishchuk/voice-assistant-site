@@ -6,13 +6,12 @@
 {% endblock styles %}
 
 {% block content %}
-
+{% if form.errors %}
+    <div class="message" id="message">
+        {{ form.errors }}
+    </div>
+{% endif %}
 <div class="container">
-    {% if form.errors %}
-        <div class="message" id="message">
-            {{ form.errors }}
-        </div>
-    {% endif %}
     <h1 class="title">Вхід</h1>
     <form class="form-login" action="{% url "user:login" %}" method="POST">
         {% csrf_token %}

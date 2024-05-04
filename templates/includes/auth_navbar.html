@@ -10,7 +10,7 @@
     <div class="right-side" id="profile">
         <div class="profile" id="profile-part">
             {% if user.image %}
-            <img src="{{ user.image.url }}" alt="" class="profile-img profile-part">
+            <img src="{{ user.image.url }}" alt="Аватар" class="profile-img profile-part">
             {% else %}
             <img src="{% static "img/profile_photo_not_found.png" %}" alt="" class="profile-img profile-part">
             {% endif %}
@@ -18,7 +18,7 @@
             <img src="{% static "img/triangle.png" %}" alt="" class="triangle profile-part" id="triangle">
         </div>
         <div class="profile-menu" id="profile-menu">
-            <a href="" class="link profile-link">Профіль</a>
+            <a href="{% url "user:profile" %}" class="link profile-link">Профіль</a>
             {% if user.is_admin or user.is_staff %}
             <a href="{% url "admin:index" %}" class="link profile-link">Адмін панель</a>
             {% endif %}

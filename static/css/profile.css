@@ -11,6 +11,17 @@ body {
     background-color: #fff;
 }
 
+.error {
+    background-color: red;
+    width: 370px;
+    margin: 1px 0 5px 0;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 5px;
+    border: 1px solid red;
+    border-radius: 10px;
+}
+
 .container {
     width: 850px;
     margin: 0 auto;
@@ -134,8 +145,8 @@ body {
     border-radius: 10px;
     padding: 15px;
     width: 500px;
-    height: 300px;
-    margin-top: calc((100vh - 300px)/2);
+    height: 400px;
+    margin-top: calc((100vh - 400px)/2);
 }
 
 .change-password .field-wrapper {
