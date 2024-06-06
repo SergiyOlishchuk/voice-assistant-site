@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('users.urls', namespace='user')),
     path('', include('introduction.urls', namespace='introduction')),
+    path('voice-assistant/', include('assistant.urls', namespace='assistant')),
 ]
 
 if settings.DEBUG:

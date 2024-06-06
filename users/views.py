@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from users.forms import UserLoginForm, UserPasswordChangeForm, UserProfileForm, UserRegistrationForm
+from users.forms import UserChangePasswordForm, UserLoginForm, UserProfileForm, UserRegistrationForm
 
 # Create your views here.
 
@@ -68,35 +68,36 @@ def logout(request):
 def profile(request):
     
     if request.method == "POST":
-        form = UserProfileForm(
-            data=request.POST, instance=request.user, files=request.FILES
-        )
         
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('user:profile'))
+        if 'profile_change' in request.POST:
+            
+            profile_form = UserProfileForm(
+                data=request.POST, instance=request.user, files=request.FILES
+            )
+            password_form = UserChangePasswordForm(user=request.user)
+        
+            if profile_form.is_valid():
+                profile_form.save()
+                return redirect(reverse('user:profile'))
+            
+        elif 'password_change' in request.POST:
+            profile_form = UserProfileForm(instance=request.user)
+            password_form = UserChangePasswordForm(request.user, request.POST)
+            
+            if password_form.is_valid():
+                user = password_form.save()
+                auth.update_session_auth_hash(request, user)
+                return redirect(reverse('user:profile'))
     
     else:
-        form = UserProfileForm(instance=request.user)
+        profile_form = UserProfileForm(instance=request.user)
+        password_form = UserChangePasswordForm(user=request.user)
         
     context = {
         'title': 'Профіль',
-        'form' : form,
-        
+        'profile_form' : profile_form,
+        'password_form' : password_form
     }
     
     return render(request, 'users/profile.html', context)
 
-# def change_password(request):
-    
-#     if request.method == 'POST':
-#         form = UserPasswordChangeForm(data=request.POST, instance=request.user)
-        
-#         if form.is_valid():
-#             form.save()
-#             return redirect(reverse('user:profile'))
-        
-#     else:
-#         form = UserPasswordChangeForm(instance=request.user)
-        
-#     context = {}

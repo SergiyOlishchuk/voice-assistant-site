@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% load assistant_tags %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static "css/nav_style.css" %}">
+<link rel="stylesheet" href="{% static "css/assistant_style.css" %}">
+{% endblock styles %}
+
+{% block content %}
+{% include "includes/auth_navbar.html" %}
+
+{% user_history request as history %}
+<p style="visibility : hidden; position : absolute;" id="api_token">{{ user.token }}</p>
+<div class="container">
+    <div class="content", id="content">
+
+        {% for history_part in history %}
+            {% if history_part.from_user %}
+            <div class="content-part">
+                <div class="author">
+                    {% if user.image %}
+                    <img src="{{ user.image.url }}" alt="" class="author-img">
+                    {% else %}
+                    <img src="{% static "img/profile_photo_not_found.png" %}" alt="" class="author-img">
+                    {% endif %}
+                    <p class="author-name">{{ user.username }}</p>
+                </div>
+                <div class="author-text">
+                    {{ history_part.text }}
+                </div>
+            </div>
+            {% else %}
+            <div class="content-part">
+                <div class="author">
+                    <img src="{% static "img/image.png" %}" alt="" class="author-img">
+                    <p class="author-name">Голосовий асистент</p>
+                </div>
+                <div class="author-text">
+                    {{ history_part.text|safe }}
+                </div>
+            </div>
+            {% endif %}
+
+
+        {% endfor %}
+    </div>
+    <div class="send-container">
+        <textarea name="" id="text_area" cols="30" rows="10" class="field" placeholder="Відправте повідомлення асистенту"></textarea>
+        <div class="send-btns">
+            <div class="send-btn" id="voice">
+                <img src="{% static "img/voice.png" %}" alt="" class="send-img">
+            </div>
+            <div class="send-btn" id="send">
+                <img src="{% static "img/send.png" %}" alt="" class="send-img">
+            </div>
+            <div class="send-btn" id="stop-sound" style="cursor: not-allowed;">
+                <img src="{% static "img/stop_sound.png" %}" alt="" class="send-img">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static "js/nav_script.js" %}"></script>
+<script src="{% static "js/assistant_script.js" %}"></script>
+{% endblock javascript %}
+

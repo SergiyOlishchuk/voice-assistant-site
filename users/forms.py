@@ -1,3 +1,4 @@
+from dataclasses import fields
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm, PasswordChangeForm
 
@@ -52,14 +53,10 @@ class UserProfileForm(UserChangeForm):
     username = forms.CharField()
     email = forms.CharField()
     token = forms.CharField()
-    
-class UserPasswordChangeForm(PasswordChangeForm):
-    class Meta:
-        model = User
-        fields = [
-            "old_password", "new_password1", "new_password2"
-        ]
 
+class UserChangePasswordForm(PasswordChangeForm):
+        
     old_password = forms.CharField()
     new_password1 = forms.CharField()
     new_password2 = forms.CharField()
+    

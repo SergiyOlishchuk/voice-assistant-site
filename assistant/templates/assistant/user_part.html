@@ -1,0 +1,23 @@
+{% load static %}
+<div class="content-part">
+    <div class="author">
+        {% if user.image %}
+        <img src="{{ user.image.url }}" alt="" class="author-img">
+        {% else %}
+        <img src="{% static "img/profile_photo_not_found.png" %}" alt="" class="author-img">
+        {% endif %}
+        <p class="author-name">{{ user.username }}</p>
+    </div>
+    <div class="author-text">
+        {{ text }}
+    </div>
+</div>
+<div class="content-part">
+    <div class="author">
+        <img src="{% static "img/image.png" %}" alt="" class="author-img">
+        <p class="author-name">Голосовий асистент</p>
+    </div>
+    <div class="author-text">
+        {{ answer|safe }}
+    </div>
+</div>

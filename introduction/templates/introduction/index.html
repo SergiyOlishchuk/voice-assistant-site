@@ -12,7 +12,7 @@
         {% include "includes/auth_navbar.html" %}
         <div class="container">
             <h1 class="title">Голосовий асистент</h1>
-            <button class="btn btn-start" id="btn-link" target_url="#">Почати роботу</button>
+            <button class="btn btn-start" id="btn-link" target_url="{% url "assistant:index" %}">Почати роботу</button>
         </div>
 
     {% else %}
